@@ -7,6 +7,7 @@ import { UserOutlined, MailOutlined, AppstoreOutlined, SettingOutlined } from '@
 import { routes} from "../../router";
 import  '../../assets/css/Home.less';
 import '../../assets/img/p1.jpg'
+import ArticleForm from "../../components/article/ArticleForm";
 
 //类型定义
 interface userInfo  {
