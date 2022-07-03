@@ -1,10 +1,13 @@
 import React, { FC, useState } from "react";
-import { Tag, Button, Menu, Dropdown, Input,
+import { Tag, Button, Input,
     Space, Select, DatePicker, Table, Pagination,Switch  } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import moment from "moment";
 import type { ColumnsType } from 'antd/lib/table';
 import {Article, ArticleInt} from "./index";
+
+
+
 
 const { Option } = Select;
 const ArticleMgr:FC = () => {
@@ -94,7 +97,7 @@ const ArticleMgr:FC = () => {
                         topChange(checked,value)
                     }}></Switch>
                     <Button>编辑</Button>
-                    <Button>删除</Button>
+                    <Button danger>删除</Button>
                 </Space>
             ),
         },

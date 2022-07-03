@@ -2,18 +2,31 @@ import React, {FC, useState, useEffect, useCallback} from 'react'
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
 import {Editor, Toolbar} from '@wangeditor/editor-for-react'
 import {IDomEditor, IEditorConfig, IToolbarConfig} from '@wangeditor/editor'
-import {Button, Select, Space} from "antd";
-import {SlateElement} from '@wangeditor/editor'
+import {Button, Select, Space, Tag} from "antd";
 import {DomEditor} from '@wangeditor/editor'
 import { Article } from "./index";
+import {CustomTagProps} from "rc-select/lib/BaseSelect";
+
 
 const { Option } = Select;
-
-type ImageElement = SlateElement & {
-    src: string
-    alt: string
-    url: string
-    href: string
+const options = [{ value: 'gold' }, { value: 'lime' }, { value: 'green' }, { value: 'cyan' }];
+const tagRender = (props: CustomTagProps) => {
+    const { label, value, closable, onClose } = props;
+    const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+    return (
+        <Tag
+            color={value}
+            onMouseDown={onPreventMouseDown}
+            closable={closable}
+            onClose={onClose}
+            style={{ marginRight: 3 }}
+        >
+            {label}
+        </Tag>
+    );
 };
 
 type category = {
@@ -122,7 +135,7 @@ const MyEditor: FC<editorProps> = (props) => {
             // file 选中的文件，格式如 { key: file }
             return file
             // 可以 return
-            // 1. return file 或者 new 一个 file ，接下来将上传
+                // 1. return file 或者 new 一个 file ，接下来将上传
             // 2. return false ，不上传这个 file
         },
         // 上传进度的回调函数
@@ -170,7 +183,7 @@ const MyEditor: FC<editorProps> = (props) => {
             id: '1',
             name: '1'
         }
-    ]
+    ];
 
     return (
         <>
@@ -189,10 +202,19 @@ const MyEditor: FC<editorProps> = (props) => {
                            })
                        }
                    </Select>
+                   <Select
+                       mode="multiple"
+                       showArrow
+                       tagRender={tagRender}
+                       defaultValue={['gold', 'cyan']}
+                       style={{ width: '100%' }}
+                       options={options}
+                       placeholder='标签'
+                   />
                    <Button onClick={()=>{
                        console.log(article)
                    }}>测试</Button>
-
+                   <Button onClick={childSubmit}>保存为草稿</Button>
                    <Button onClick={childSubmit}>提交</Button>
                </Space>
             </div>

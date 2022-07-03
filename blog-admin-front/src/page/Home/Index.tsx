@@ -1,14 +1,11 @@
 
 import React, { FC, useState } from 'react';
-import {useNavigate, Outlet, unstable_HistoryRouter} from "react-router-dom";
+import {useNavigate, Outlet } from "react-router-dom";
 import {Layout, Menu, Row, Col, Avatar, Space} from 'antd';
 import type { MenuProps } from 'antd';
-import { UserOutlined, MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
-import { routes} from "../../router";
+import { UserOutlined } from '@ant-design/icons';
 import  '../../assets/css/Home.less';
 import '../../assets/img/p1.jpg'
-import ArticleForm from "../../components/article/ArticleForm";
-
 //类型定义
 interface userInfo  {
     name: string;
@@ -57,6 +54,18 @@ const Index: FC = () => {
                             ),
                             key: 'setting:2',
                         },
+                        {
+                            label: (
+                                <div onClick={()=>navigate('/tagMgr')}>标签管理</div>
+                            ),
+                            key: 'setting:3'
+                        },
+                        {
+                            label: (
+                                <div onClick={()=>navigate('/categoryMgr')}>分类管理</div>
+                            ),
+                            key: 'setting:4'
+                        }
                     ],
                 },
             ],
@@ -64,28 +73,11 @@ const Index: FC = () => {
     ];
 
     const onClick: MenuProps['onClick'] = e => {
-        console.log('click ', e);
         setCurrent(e.key);
     };
     let styleLayout = {
       background: `url(${require('../../assets/img/login.jpg')})`,
       backgroundSize: '100%',
-      //   backgroundRepeat: 'no-repeat'
-    };
-    const Foo=()=> {
-        const navigate = useNavigate();
-        return (
-            <div onClick={()=> navigate('/article')}>跳转</div>
-        )
-    };
-    //导航栏
-    const Navigate = ()=>{
-        const navigate = useNavigate();
-        routes.map((index,key)=> {
-            return (
-                <div onClick={()=> navigate(index.path)}>{index.name}</div>
-            )
-        });
     };
 
     return (
@@ -120,7 +112,9 @@ const Index: FC = () => {
                     </div>
                 </Content>
             
-                <Footer style={{ textAlign: 'center', background:'rgba(255,255,255,0)' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center', background:'rgba(255,255,255,0)' }}>
+                    <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2022032049号-1</a>
+                </Footer>
             </Layout>
         </div>
 

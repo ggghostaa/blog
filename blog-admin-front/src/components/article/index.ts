@@ -37,9 +37,10 @@ export interface tagInt{
     id: string;
     tagName: string;
     createTime: string;
+    color: string;
 }
 
-export interface categoryName{
+export interface categoryInt{
     id: string;
     categoryName: string;
     createTime: string;

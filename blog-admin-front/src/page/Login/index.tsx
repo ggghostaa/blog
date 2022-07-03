@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react";
+import { FC, useRef } from "react";
 import { Form, Input, Button, FormInstance } from "antd";
 import '../../assets/css/Login.less'
 
@@ -10,8 +10,6 @@ export interface LoginDataInt {
 
 const Login: FC = () => {
 
-  
-  // const loginData = new LoginData();
   const loginForm = useRef<FormInstance | null>(null)
 
   const onFinish = (values: LoginDataInt) => {
